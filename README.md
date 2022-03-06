@@ -86,7 +86,7 @@ Code can be found in the `./chatbot/05-wellness-bot` folder.
 
 ## Web Interface
 
-### Chatroom
+### 1. Chatroom
 
 The project `./UI/chatroom` provides a basic interface for interacting with bots in the webpage, which supports text and voice as input. Please refer to https://github.com/scalableminds/chatroom for more details.
 
@@ -134,7 +134,7 @@ yarn serve
 Open `http://localhost:8080/demo.html` in your browser.
 
 
-### Interactive-Voice-Response
+### 2. Interactive-Voice-Response
 * The original project: https://github.com/vishwaspuri/Interactive-Voice-Response I make slight modifications here.
 
 
@@ -142,7 +142,7 @@ Open `http://localhost:8080/demo.html` in your browser.
 * Usage - You need to open 3 terminal/shell windows:
 
 
-*Terminal-1*:  For RASA core server 
+*Terminal-1*:  For Rasa server 
 
 ```bash
 # change to chatbot directory (just an example)
