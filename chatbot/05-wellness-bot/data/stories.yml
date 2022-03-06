@@ -1,0 +1,82 @@
+version: "2.0"
+stories:
+- story: survey happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: affirm
+  - action: health_form
+  - active_loop: health_form
+- story: survey stop
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: affirm
+  - action: health_form
+  - active_loop: health_form
+  - intent: out_of_scope
+  - action: utter_ask_continue
+  - intent: deny
+  - action: action_deactivate_loop
+  - active_loop: null
+  - action: utter_goodbye
+- story: survey continue
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: affirm
+  - action: health_form
+  - active_loop: health_form
+  - intent: out_of_scope
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: health_form
+- story: no survey
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: deny
+  - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: affirm
+  - action: health_form
+  - active_loop: health_form
+  - slot_was_set:
+    - requested_slot: confirm_exercise
+  - slot_was_set:
+    - confirm_exercise: true
+  - slot_was_set:
+    - requested_slot: exercise
+  - slot_was_set:
+    - exercise: hiking
+  - slot_was_set:
+    - exercise: hiking
+  - slot_was_set:
+    - requested_slot: sleep
+  - slot_was_set:
+    - sleep: 8 hours
+  - slot_was_set:
+    - sleep: 8 hours
+  - slot_was_set:
+    - requested_slot: stress
+  - slot_was_set:
+    - stress: high
+  - slot_was_set:
+    - stress: high
+  - slot_was_set:
+    - requested_slot: diet
+  - slot_was_set:
+    - diet: no
+  - slot_was_set:
+    - requested_slot: goal
+  - slot_was_set:
+    - goal: finish the rasa tutorial
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit_results
+  - action: utter_slots_values

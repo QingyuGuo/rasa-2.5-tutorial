@@ -1,0 +1,114 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: false
+intents:
+- affirm
+- greet
+- deny
+- inform
+- goodbye
+- bot_challenge
+- thankyou
+- out_of_scope
+- ask_lower_stress
+- ask_eat_healthy
+- ask_exercise
+entities:
+- exercise
+- sleep
+- stress
+slots:
+  confirm_exercise:
+    type: any
+    influence_conversation: false
+  exercise:
+    type: any
+    influence_conversation: false
+  sleep:
+    type: any
+    influence_conversation: false
+  diet:
+    type: any
+    influence_conversation: false
+  stress:
+    type: any
+    influence_conversation: false
+  goal:
+    type: any
+    influence_conversation: false
+responses:
+  utter_greet:
+  - text: Hi! It's time for your daily wellness check. Tracking healthy habits is a great way to measure your progress over time. Would you like to answer a few questions about your health?
+  utter_goodbye:
+  - text: See you tomorrow. Bye!
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_ask_confirm_exercise:
+  - text: Did you exercise yesterday? Don't sweat it if you didn't run a marathon - walks count!
+  utter_ask_exercise:
+  - text: What kind of exercise did you do 💪 ?
+  utter_ask_sleep:
+  - text: How much sleep did you get 💤  last night?
+  utter_ask_diet:
+  - text: Did you stick to a healthy diet 🥦  yesterday?
+  utter_ask_stress:
+  - text: Is your stress level low, medium, or high 🧘 ?
+  utter_ask_goal:
+  - text: Setting goals - even small ones - is a great way to focus your day. What do you want to accomplish today 🥇 ?
+  utter_slots_values:
+  - text: |-
+      Here's your daily wellness log:
+       - Exercised?: {confirm_exercise}
+       - Type of exercise: {exercise}
+       - Sleep: {sleep}
+       - Stuck to a healthy diet?: {diet}
+       - Stress level: {stress}
+       - Goal: {goal}
+  utter_no_worries:
+  - text: No problem :)
+  utter_ask_continue:
+  - text: Sorry, I don't quite understand. Do you want to continue?
+  utter_stress_info:
+  - text: It's ok to feel overwhelmed at times. Try to set realistic expectations and exercise time management techniques, like dividing large tasks into more manageable pieces. Relaxation techniques, like deep breathing and meditation, can also be beneficial.
+  utter_exercise_info:
+  - text: Most healthy adults should aim to get about 150 min of moderate exercise per week. This includes activities like a brisk walk or yard work.
+  utter_diet_info:
+  - text: A healthy diet includes fruits and vegetables, whole grains, dairy, lean protein, and plant-based fats. While there is room in a healthy diet for treats, added sugar should be eaten sparingly. Aim for a variety of foods, and balance.
+actions:
+- action_submit_results
+- utter_greet
+- utter_slots_values
+forms:
+  health_form:
+    confirm_exercise:
+    - type: from_intent
+      intent: affirm
+      value: true
+    - type: from_intent
+      intent: deny
+      value: false
+    - type: from_intent
+      intent: inform
+      value: true
+    exercise:
+    - type: from_entity
+      entity: exercise
+    sleep:
+    - type: from_entity
+      entity: sleep
+    - type: from_intent
+      intent: deny
+      value: None
+    stress:
+    - type: from_entity
+      entity: stress
+    diet:
+    - type: from_text
+      intent:
+      - inform
+      - affirm
+      - deny
+    goal:
+    - type: from_text
+      intent: inform

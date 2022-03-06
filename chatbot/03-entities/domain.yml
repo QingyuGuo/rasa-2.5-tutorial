@@ -1,0 +1,52 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- tell_name
+- greet
+- give_name_with_sentence
+- repeat_name
+- goodbye
+- give_name
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+entities:
+- name
+slots:
+  name:
+    type: text
+    influence_conversation: true
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_ask_name:
+  - text: What is your name?
+  utter_remember_name:
+  - text: I will remember you, {name}
+  utter_please_rephrase:
+  - text: I'm sorry, I didn't quite understand that. Could you rephrase?
+  utter_out_of_scope:
+  - text: Sorry, I can't handle that request.
+actions:
+- action_receive_name
+- action_say_name
+# - utter_ask_name
+# - utter_goodbye
+# - utter_greet
+# - utter_please_rephrase
+# - utter_remember_name

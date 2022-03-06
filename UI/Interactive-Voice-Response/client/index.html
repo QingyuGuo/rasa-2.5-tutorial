@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Interactive Voice response
+    </title>
+    <link rel="stylesheet" href="./static/index.css">
+    <link rel="stylesheet" href="./static/mvp.css">
+
+</head>
+
+<!-- <body style="background-color:mediumturquoise; color: white;"> -->
+
+<body>
+    <div class="content">
+        <header>
+            <div class="mega-div">
+                <div class="fixed-top">
+                    <div class="img-with-text">
+                        <!-- https://www.cloudtalk.io/static-media/content/images/cloudtalk%20interactive%20voice%20response.png -->
+                        <img class="banner-image center-image" height="360vh" width="450vw" alt="Robot logo"
+                            src="./static/images/interactiveVoiceResponse.png" style="top:0px;"></img>
+                        <p class="center-text" style="font-size: 40px;"><code>UnScript</code></p>
+                        <h1 class="center-heading"><code> Interactive Voice Response </code></h1>
+                    </div>
+                    <div>
+                        <button id="record" style="background-color: #5a17ee; border: 0px;">Speak</button>
+                        <div class="chose-language">
+                            <label for="language" style="font-size: 18px;"><code>Choose a language:</code></label>
+                            <select name="language" style="position: fixed;left: 50vw;top: 609px;user-select: auto; background-color: #058daf;
+                        color: white;
+                        border: none;
+                        /* font-size: 20px; */
+                        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+                        -webkit-appearance: button;
+                        appearance: button;
+                        outline: none;" onchange='changeLang(this);'>
+                                <option value="es">English</option>
+                                <option value="fr">French</option>
+                                <option value="es">Spanish</option>
+                                <option value="de">German</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="voice-on-off">
+                        <input type="image" src="./static/images/voiceOn.png"
+                            style="height:50px; position: fixed; top: 5px; right: 5px" name="saveForm"
+                            class="mute-unmute" id="mute-unmute" onclick="reverseVolumeSettings(this);" />
+                        <script>
+                            // voiceOn="https://www.freeiconspng.com/thumbs/sound-png/sound-png-3.png";
+                            // voiceOff="https://www.freeiconspng.com/thumbs/sound-off-icon/mute-off-sound-off-icon-1.png"
+                            function reverseVolumeSettings(sal) {
+                                voiceOn = "./static/images/voiceOn.png";
+                                voiceOff = "./static/images/voiceOff.png";
+                                var button = document.getElementById('mute-unmute');
+                                if (button.src.match(voiceOn)) {
+                                    SpeechSynthesisUtterance.volume = 0;
+                                    button.setAttribute("src", voiceOff);
+                                } else {
+                                    SpeechSynthesisUtterance.volume = 1;
+                                    button.setAttribute("src", voiceOn);
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+                <img class="chat-border" src="./static/images/iphone.png">
+                <div id="output" class="output">
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="textbox">
+            
+        <div class="textbox-text"><input id="textbox-text" type="text" placeholder="Or type" name="message"></div>
+            <div class="textbox-submit"><input id="textbox-submit" type="button" value="send"
+                    onclick="sendTypedMessage();"></div>
+    </div>
+</body>
+<script src="./static/index.js"></script>
+
+</html>

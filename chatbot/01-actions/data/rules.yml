@@ -1,0 +1,23 @@
+version: "2.0"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+# - rule: Encourage the user anytime the user is great
+#   steps:
+#   - intent: mood_great
+#   - action: utter_greet
+
+# - rule: Comfort the user anytime the user is unhappy
+#   steps:
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
